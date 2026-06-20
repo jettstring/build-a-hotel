@@ -6,8 +6,6 @@ local AnalyticsService = game:GetService("AnalyticsService")
 local Signal = require(ReplicatedStorage.Packages.Signal)
 local ProfileStore = require(ReplicatedStorage.Packages.ProfileStore)
 
-local MonetizationAssets = ReplicatedStorage.GameAssets.MonetizationAssets
-local Products = require(MonetizationAssets.Products)
 
 --------------------------------------------------
 -- DEPENDENCIES -- 
@@ -21,12 +19,10 @@ local remotes = {
 
 local INCREMENTABLE_VALUES = {
 	["Money"] = true,
-	["Dogtags"] = true,
 }
 
 local PROFILE_TEMPLATE = require(ReplicatedStorage.Modules:WaitForChild("ProfileTemplate"))
 local PURCHASE_PROFILE_TEMPLATE = require(ReplicatedStorage.Modules:WaitForChild("PurchaseProfileTemplate"))
-
 
 --------------------------------------------------
 -- STATE --
@@ -37,8 +33,8 @@ DataService.Signals = {
 	DataLoaded = Signal.new(),
 }
 
-DataService.MainKey = "LIVE-01"
-DataService.PurchaseKey = "LIVE-PURCHASES-01"
+DataService.MainKey = "DEV-01"
+DataService.PurchaseKey = "DEV-PURCHASES-01"
 
 DataService.DATA_CONFIG = {
 	Mock = false, 
@@ -60,30 +56,7 @@ DataService.PurchaseProfiles = {}
 -- PRIVATE FUNCTIONS --
 --------------------------------------------------
 
-local function _NormalizeUnlockedNodes(profileData)
-	local normalized = {}
-
-	local upgrades = profileData.Upgrades
-	if typeof(upgrades) ~= "table" then
-		upgrades = {}
-		profileData.Upgrades = upgrades
-	end
-
-	local unlockedNodes = upgrades.UnlockedNodes
-	if typeof(unlockedNodes) == "table" then
-		for key, value in unlockedNodes do
-			if typeof(key) == "string" and value == true then
-				normalized[key] = true
-			elseif typeof(value) == "string" then
-				normalized[value] = true
-			end
-		end
-	end
-
-	upgrades.UnlockedNodes = normalized
-end
-
-local function _PlayerAdded(player: Player)
+local function _playerAdded(player: Player)
 	local profile = DataService.PlayerStore:StartSessionAsync(`{player.UserId}`, {
 		Cancel = function()
 			return player.Parent ~= Players
@@ -96,11 +69,9 @@ local function _PlayerAdded(player: Player)
 		end,
 	})
 
-
 	if profile ~= nil and purchaseProfile ~= nil then
 		profile:AddUserId(player.UserId)
 		profile:Reconcile()
-		_NormalizeUnlockedNodes(profile.Data)
 
 		purchaseProfile:AddUserId(player.UserId)
 		purchaseProfile:Reconcile()
@@ -143,7 +114,7 @@ local function _PlayerAdded(player: Player)
 	end
 end
 
-local function _PlayerRemoved(player: Player)
+local function _playerRemoved(player: Player)
 	local profile = DataService.Profiles[player]
 	local purchaseProfile = DataService.PurchaseProfiles[player]
 
@@ -184,143 +155,6 @@ function DataService:GetPurchaseProfile(player: Player)
 	return purchaseProfile.Data
 end
 
-function DataService:IncrementCurrency(
-	player: Player,
-	valueName: string,
-	amount: number,
-	source: string?,
-	suppressClientEffects: boolean?,
-	suppressAnalytics: boolean?
-): string
-	if INCREMENTABLE_VALUES[valueName] ~= true then
-		return `Value not found for {valueName}`
-	end
-
-	local profile = self.Profiles[player]
-	if not profile then
-		return `Profile not found for {player.Name}`
-	end
-
-	if typeof(amount) ~= "number" then
-		return "Amount must be a number."
-	end
-
-	local currentValue = profile.Data[valueName]
-	if typeof(currentValue) ~= "number" then
-		currentValue = 0
-	end
-
-	local newValue = currentValue + amount
-	profile.Data[valueName] = newValue
-	
-	-- Update attributes
-	self:UpdateAttributes(player)
-
-	local transactionAmount = math.abs(amount)
-	if not suppressAnalytics then
-		if amount > 0 then
-			AnalyticsService:LogEconomyEvent(player, Enum.AnalyticsEconomyFlowType.Source, valueName,
-				transactionAmount,
-				newValue,
-				Enum.AnalyticsEconomyTransactionType.Gameplay.Name,
-				nil,
-				{
-					[Enum.AnalyticsCustomFieldKeys.CustomField01.Name] = source,
-				} 
-			)
-		elseif amount < 0 then
-			AnalyticsService:LogEconomyEvent(player, Enum.AnalyticsEconomyFlowType.Sink, valueName,
-				transactionAmount,
-				newValue,
-				Enum.AnalyticsEconomyTransactionType.Gameplay.Name,
-				nil,
-				{
-					[Enum.AnalyticsCustomFieldKeys.CustomField01.Name] = source,
-				} 
-			)
-		end
-	end
-
-	local customAnalyticsService = self.Services.CustomAnalyticsService
-	if customAnalyticsService and amount ~= 0 and not suppressAnalytics then
-		local stats = profile.Data.Stats
-		local playTime = if typeof(stats) == "table" and typeof(stats.Playtime) == "number" then stats.Playtime else 0
-
-		customAnalyticsService:AddCurrency(
-			player,
-			{
-				currency = valueName,
-				amount = amount,
-				balance = newValue,
-				source = source,
-				playTime = playTime,
-			}
-		)
-	end
-
-	-- Client Effects
-	if valueName == "Money" and amount > 0 and not suppressClientEffects then
-		ReplicatedStorage.Remotes.Currency.ClientMoneyEffects:FireClient(player, newValue, amount, source)
-	end
-	
-	-- VIP cash 10% bonus
-	if valueName == "Money" and source ~= "Cash Pack" and source ~= "Admin" then
-		if self.Services.MonetizationService:OwnsGamepass(player, Products.VIP.id) then
-			if amount > 0 then
-				amount *= 1.1 
-				print("VIP cash bonus applied:", amount)
-			end
-		end
-	end
-	
-	-- Active currency boosts
-	if valueName == "Money" or valueName == "Dogtags" then
-		local currencyBoostSum = self.Services.InventoryService:GetPlayerActiveBoostType(player, "CurrencyMulti")
-		local currencyMulti = currencyBoostSum > 0 and currencyBoostSum or 1
-		amount *= currencyMulti
-		print("currencyMulti", currencyMulti)
-	end
-
-
-	return `{player.Name} now has {newValue} {valueName}.`
-end
-
-function DataService:IncrementMoney(player: Player, amount: number, source: string?, suppressClientEffects: boolean?): string
-	
-	
-	return self:IncrementCurrency(player, "Money", amount, source, suppressClientEffects)
-end
-
-function DataService:IncrementDogtags(player: Player, amount: number, source: string?, suppressClientEffects: boolean?): string
-	return self:IncrementCurrency(player, "Dogtags", amount, source, suppressClientEffects)
-end
-
-function DataService:IncrementRolls(player: Player, amount: number, source: string?, suppressClientEffects: boolean?): string
-	return self:IncrementCurrency(player, "Rolls", amount, source, suppressClientEffects)
-end
-
-function DataService:IncrementPlaytimePoints(player: Player, amount: number, source: string?, suppressClientEffects: boolean?): string
-	return self:IncrementCurrency(player, "PlaytimePoints", amount, source, suppressClientEffects)
-end
-
-function DataService:EnemyKilled(player: Player, enemyType: string)
-	local profile = self.Profiles[player]
-	if not profile then
-		warn("[EnemyKilled] No profile found for player:", player.Name)
-		return
-	end
-
-	local stats = profile.Data.Stats
-	stats.EnemiesKilled += 1
-
-	local perTypeKey = `{enemyType}EnemiesKilled`
-	if typeof(stats[perTypeKey]) == "number" then
-		stats[perTypeKey] += 1
-	else
-		warn(`[EnemyKilled] Unknown enemy type "{enemyType}" for {player.Name}`)
-	end
-end
-
 
 function DataService:UpdateAttributes(player: Player)
 	local profile = self:GetProfile(player)
@@ -330,6 +164,8 @@ function DataService:UpdateAttributes(player: Player)
 		player:SetAttribute(valueName, profile[valueName])
 	end
 end
+
+
 --------------------------------------------------
 -- MAIN --
 --------------------------------------------------
@@ -341,24 +177,11 @@ function DataService:Init(services)
 end
 
 function DataService:Start()
-	
 	for _, player in Players:GetPlayers() do
-		_PlayerAdded(player)
+		_playerAdded(player)
 	end
-Players.PlayerAdded:Connect(_PlayerAdded)
-	Players.PlayerRemoving:Connect(_PlayerRemoved)
-	
-	-- Increment playtime
-	task.spawn(function()
-		while true do
-			task.wait(10)
-			for _, player in Players:GetPlayers() do
-				if self.Profiles[player] then
-					self.Profiles[player].Data.Stats.Playtime += 10
-				end
-			end
-		end
-	end)
+	Players.PlayerAdded:Connect(_playerAdded)
+	Players.PlayerRemoving:Connect(_playerRemoved)
 	
 	
 	remotes.GetProfile.OnServerInvoke = function(player)

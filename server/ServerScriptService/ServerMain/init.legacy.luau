@@ -3,24 +3,7 @@ local Services = script:WaitForChild("Services")
 
 local loadOrder = {
 	{"DataService", require(Services.DataService) },
-	{"ZoneService", require(Services.ZoneService) },
-	{"UpgradeService", require(Services.UpgradeService) },
-	{"CharacterService", require(Services.CharacterService) },
-	{"RollService", require(Services.RollService) },
-	{"GunService", require(Services.GunService) },
-	{"EnemyService", require(Services.EnemyService) },
-	{"InventoryService", require(Services.InventoryService) },
-	{"NotificationService", require(Services.NotificationService) },
-	{"CustomAnalyticsService", require(Services.CustomAnalyticsService) },
-	{"RebirthService", require(Services.RebirthService) },
-	{"IndexService", require(Services.IndexService) },
-	{"SettingsService", require(Services.SettingsService) },
-	{"OnboardingService", require(Services.OnboardingService) },
-	{"MonetizationService", require(Services.MonetizationService) },
-	{"ServerLuckService", require(Services.ServerLuckService)},
-	{"OfflineService", require(Services.OfflineService) },
-	{"LeaderstatService", require(Services.LeaderstatService) },
-	{"GroupRewardService", require(Services.GroupRewardService) },
+	{"PlotService", require(Services.PlotService) },
 }
 
 -- Build named lookup
