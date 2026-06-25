@@ -9,13 +9,13 @@ local Trove = require(ReplicatedStorage.Packages.Trove)
 -- DEPENDENCIES -- 
 --------------------------------------------------
 
-local GameAssets = ReplicatedStorage:WaitForChild("GameAssets")
-
-local PlotFolder = workspace.PlotFolder
+local PlotsFolder = workspace.Plots
 
 -- Plot Assets
-local BaseAssets = GameAssets.Plot
-local Plot = require(BaseAssets.Plot)
+local GameAssets = ReplicatedStorage:WaitForChild("GameAssets")
+local PlotAssets = GameAssets.PlotAssets
+local Plot = require(PlotAssets.Plot)
+
 
 local remotesFolder = ReplicatedStorage:WaitForChild("Remotes")
 local remotes = {
@@ -85,8 +85,8 @@ function PlotService:AssignPlot(player: Player)
 	
 	
 	-- find first available plot folder
-	for i = 1, #PlotFolder:GetChildren() do
-		local plotFolder = PlotFolder:FindFirstChild(tostring(i))
+	for i = 1, #PlotsFolder:GetChildren() do
+		local plotFolder = PlotsFolder:FindFirstChild(tostring(i))
 		if not plotFolder then continue end
 		if self.ClaimedPlots[plotFolder] then continue end
 

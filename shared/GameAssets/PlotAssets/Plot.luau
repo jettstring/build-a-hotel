@@ -10,7 +10,7 @@ local Trove = require(ReplicatedStorage.Packages.Trove)
 local GameAssets = ReplicatedStorage:WaitForChild("GameAssets")
 
 -- Plot Assets
-local BaseAssets = GameAssets.Plot
+local BaseAssets = GameAssets.PlotAssets
 
 --------------------------------------------------
 -- TYPES -- 
@@ -54,6 +54,15 @@ function Plot:_Setup()
 	local owner: Player = self.Owner
 	local plotModel: Model = self.PlotFolder:FindFirstChild("Plot")
 	
+	-- Assign spawn to owner
+	local spawnLocation = plotModel:WaitForChild("SpawnLocation")
+	owner.RespawnLocation = spawnLocation
+	if owner.Character then
+		owner.Character:MoveTo(spawnLocation.Position + Vector3.new(0, 5, 0))
+	end
+	
+	-- Update inital owner display
+	self:UpdateOwnerDisplay()
 	
 	self.PlotFolder:SetAttribute("Owner", owner.UserId)
 	self.State.Active = true
@@ -71,31 +80,35 @@ function Plot:UpdateOwnerDisplay()
 	-- 
 	local NUMERALS = {"I", "II", "III"}
 	local playerRank, rankTier = "Bronze", 1 -- TODO: read player ranking info
-	local rankColor = ColorSequence.new(
+	local rankColor = ColorSequence.new{
 		ColorSequenceKeypoint.new(0, Color3.fromRGB(209, 49, 0)),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(93, 52, 25))
-	)
+	}
 	
 	
 	-- billboard
-	local ownerBillboard = plotComponents:WaitForChild("OwnerBillboard")
-	local nameLabel = ownerBillboard.Display.NameLabel
-	local avatarDisplay = ownerBillboard.Display.AvatarDisplay
-	local rankDisplay = ownerBillboard.Display.RankDisplay
+	local billboardGui = plotComponents.OwnerBillboard.BillboardGui
+	local nameLabel = billboardGui.Display.NameLabel
+	local avatarDisplay = billboardGui.Display.AvatarDisplay
+	local rankDisplay = billboardGui.Display.RankDisplay
+	local rankLabel = rankDisplay.RankLabel
 	
 	nameLabel.Text = owner.DisplayName
-	local success, result = pcall(function()
-		return Players:GetUserThumbnailAsync(owner.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
-	end)
-	if success and result then
-		avatarDisplay.Image = result
-	else
-		warn("[UpdateOwnerDisplay] Failed to get avatar for", owner, result)
-	end
 	
+	local playerUserId = owner.UserId
+	if playerUserId < 0 then playerUserId = 1 end -- set to roblox default pfp 
+	local success, playerThumbnail = pcall(function()
+		return Players:GetUserThumbnailAsync(playerUserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+	end)
+	if success then
+		avatarDisplay.Image = playerThumbnail
+		avatarDisplay.Visible = true
+	end
 
-	rankDisplay.RankLabel.Text = string.format("%s %d", playerRank, NUMERALS[rankTier])
-	rankDisplay.UIGradient.Color = rankColor
+	rankLabel.Text = string.format("%s %s", playerRank, NUMERALS[rankTier])
+	rankLabel.UIGradient.Color = rankColor
+	
+	
 	
 	-- plot sign
 	

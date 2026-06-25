@@ -3,37 +3,99 @@
   "className": "DataModel",
   "children": [
     {
-      "name": "StarterPlayer",
-      "className": "StarterPlayer",
-      "pluginManaged": true,
-      "children": [
-        {
-          "name": "StarterPlayerScripts",
-          "className": "StarterPlayerScripts",
-          "pluginManaged": true,
-          "children": [
-            {
-              "name": "ClientMain",
-              "className": "LocalScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/init.local.luau"
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "ReplicatedStorage",
       "className": "ReplicatedStorage",
       "pluginManaged": true,
       "children": [
         {
+          "name": "Modules",
+          "className": "Folder",
+          "pluginManaged": true,
+          "children": [
+            {
+              "name": "PurchaseProfileTemplate",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/PurchaseProfileTemplate.luau"
+              ]
+            },
+            {
+              "name": "ProfileTemplate",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/ProfileTemplate.luau"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GameAssets",
+          "className": "Folder",
+          "pluginManaged": true,
+          "children": [
+            {
+              "name": "NPCs",
+              "className": "Folder",
+              "pluginManaged": true,
+              "children": [
+                {
+                  "name": "Pathfinder",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/Pathfinder.luau"
+                  ]
+                },
+                {
+                  "name": "NavGrid",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/NavGrid.luau"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "PlotAssets",
+              "className": "Folder",
+              "pluginManaged": true,
+              "children": [
+                {
+                  "name": "Plot",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/PlotAssets/Plot.luau"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           "name": "Packages",
           "className": "Folder",
           "pluginManaged": true,
           "children": [
+            {
+              "name": "Spr",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Spr.luau"
+              ]
+            },
+            {
+              "name": "ProfileStore",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/ProfileStore.luau"
+              ]
+            },
             {
               "name": "Icon",
               "className": "ModuleScript",
@@ -43,11 +105,43 @@
               ],
               "children": [
                 {
+                  "name": "Types",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Types.luau"
+                  ]
+                },
+                {
+                  "name": "VERSION",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/VERSION.luau"
+                  ]
+                },
+                {
+                  "name": "Reference",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Reference.luau"
+                  ]
+                },
+                {
                   "name": "Attribute",
                   "className": "ModuleScript",
                   "pluginManaged": true,
                   "filePaths": [
                     "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Attribute.luau"
+                  ]
+                },
+                {
+                  "name": "Utility",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Utility.luau"
                   ]
                 },
                 {
@@ -191,38 +285,6 @@
                         "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Packages/Janitor.luau"
                       ]
                     }
-                  ]
-                },
-                {
-                  "name": "Types",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Types.luau"
-                  ]
-                },
-                {
-                  "name": "VERSION",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/VERSION.luau"
-                  ]
-                },
-                {
-                  "name": "Reference",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Reference.luau"
-                  ]
-                },
-                {
-                  "name": "Utility",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Icon/Utility.luau"
                   ]
                 }
               ]
@@ -1281,6 +1343,78 @@
               ]
             },
             {
+              "name": "Abbreviate",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Abbreviate.luau"
+              ]
+            },
+            {
+              "name": "Loader",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Loader.luau"
+              ]
+            },
+            {
+              "name": "Signal",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Signal.luau"
+              ]
+            },
+            {
+              "name": "Trove",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Trove.luau"
+              ]
+            },
+            {
+              "name": "Timer",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Timer.luau"
+              ]
+            },
+            {
+              "name": "Observers",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Observers.luau"
+              ]
+            },
+            {
+              "name": "Spring",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Spring.luau"
+              ]
+            },
+            {
+              "name": "CastVisuals",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/CastVisuals.luau"
+              ]
+            },
+            {
+              "name": "Bezier",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Bezier.luau"
+              ]
+            },
+            {
               "name": "_Index",
               "className": "Folder",
               "pluginManaged": true,
@@ -1583,6 +1717,31 @@
                   ]
                 },
                 {
+                  "name": "sleitnick_trove@1.5.1",
+                  "className": "Folder",
+                  "pluginManaged": true,
+                  "children": [
+                    {
+                      "name": "trove",
+                      "className": "ModuleScript",
+                      "pluginManaged": true,
+                      "filePaths": [
+                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/_Index/sleitnick_trove@1.5.1/trove/init.luau"
+                      ],
+                      "children": [
+                        {
+                          "name": "init.test",
+                          "className": "ModuleScript",
+                          "pluginManaged": true,
+                          "filePaths": [
+                            "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/_Index/sleitnick_trove@1.5.1/trove/init.test.luau"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "name": "sleitnick_signal@1.5.0",
                   "className": "Folder",
                   "pluginManaged": true,
@@ -1696,171 +1855,44 @@
                       ]
                     }
                   ]
-                },
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StarterPlayer",
+      "className": "StarterPlayer",
+      "pluginManaged": true,
+      "children": [
+        {
+          "name": "StarterPlayerScripts",
+          "className": "StarterPlayerScripts",
+          "pluginManaged": true,
+          "children": [
+            {
+              "name": "ClientMain",
+              "className": "LocalScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/init.local.luau"
+              ],
+              "children": [
                 {
-                  "name": "sleitnick_trove@1.5.1",
+                  "name": "Controllers",
                   "className": "Folder",
                   "pluginManaged": true,
                   "children": [
                     {
-                      "name": "trove",
+                      "name": "PlotController",
                       "className": "ModuleScript",
                       "pluginManaged": true,
                       "filePaths": [
-                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/_Index/sleitnick_trove@1.5.1/trove/init.luau"
-                      ],
-                      "children": [
-                        {
-                          "name": "init.test",
-                          "className": "ModuleScript",
-                          "pluginManaged": true,
-                          "filePaths": [
-                            "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/_Index/sleitnick_trove@1.5.1/trove/init.test.luau"
-                          ]
-                        }
+                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/Controllers/PlotController.luau"
                       ]
                     }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "Spr",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Spr.luau"
-              ]
-            },
-            {
-              "name": "ProfileStore",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/ProfileStore.luau"
-              ]
-            },
-            {
-              "name": "Abbreviate",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Abbreviate.luau"
-              ]
-            },
-            {
-              "name": "Loader",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Loader.luau"
-              ]
-            },
-            {
-              "name": "Signal",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Signal.luau"
-              ]
-            },
-            {
-              "name": "Trove",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Trove.luau"
-              ]
-            },
-            {
-              "name": "Timer",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Timer.luau"
-              ]
-            },
-            {
-              "name": "Observers",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Observers.luau"
-              ]
-            },
-            {
-              "name": "Spring",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Spring.luau"
-              ]
-            },
-            {
-              "name": "CastVisuals",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/CastVisuals.luau"
-              ]
-            },
-            {
-              "name": "DroppedCurrencyItem",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/DroppedCurrencyItem.luau"
-              ]
-            },
-            {
-              "name": "Bezier",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Packages/Bezier.luau"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "Modules",
-          "className": "Folder",
-          "pluginManaged": true,
-          "children": [
-            {
-              "name": "PurchaseProfileTemplate",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/PurchaseProfileTemplate.luau"
-              ]
-            },
-            {
-              "name": "ProfileTemplate",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/ProfileTemplate.luau"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "GameAssets",
-          "className": "Folder",
-          "pluginManaged": true,
-          "children": [
-            {
-              "name": "Plot",
-              "className": "Folder",
-              "pluginManaged": true,
-              "children": [
-                {
-                  "name": "Plot",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/Plot/Plot.luau"
                   ]
                 }
               ]
@@ -1901,6 +1933,14 @@
                   "pluginManaged": true,
                   "filePaths": [
                     "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/PlotService.luau"
+                  ]
+                },
+                {
+                  "name": "NavigationService",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/NavigationService.luau"
                   ]
                 }
               ]
