@@ -1933,6 +1933,14 @@
                   "filePaths": [
                     "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/BuildAssets/Placer.luau"
                   ]
+                },
+                {
+                  "name": "BuildUtil",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/BuildAssets/BuildUtil.luau"
+                  ]
                 }
               ]
             }
@@ -1967,14 +1975,6 @@
                   ]
                 },
                 {
-                  "name": "NotificationService",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/NotificationService.luau"
-                  ]
-                },
-                {
                   "name": "PlotService",
                   "className": "ModuleScript",
                   "pluginManaged": true,
@@ -1988,6 +1988,14 @@
                   "pluginManaged": true,
                   "filePaths": [
                     "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/BuildService.luau"
+                  ]
+                },
+                {
+                  "name": "NotificationService",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/NotificationService.luau"
                   ]
                 }
               ]

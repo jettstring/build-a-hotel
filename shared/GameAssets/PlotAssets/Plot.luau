@@ -64,6 +64,10 @@ function Plot:_Setup()
 	-- Update inital owner display
 	self:UpdateOwnerDisplay()
 	
+	
+	-- setup components
+	
+	
 	self.PlotFolder:SetAttribute("Owner", owner.UserId)
 	self.State.Active = true
 end
@@ -71,6 +75,7 @@ end
 --------------------------------------------------
 -- ACTIONS -- 
 --------------------------------------------------
+
 
 function Plot:UpdateOwnerDisplay()
 	local owner: Player = self.Owner

@@ -8,10 +8,20 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local playerGui = player.PlayerGui
 
+local Modules = ReplicatedStorage.Modules
+local ProfileTemplate = require(Modules.ProfileTemplate)
+
+
+local GameAssets = ReplicatedStorage.GameAssets
+
+-- BuildAssets
+local BuildAssets = GameAssets.BuildAssets
+local RoomDefinitions = require(BuildAssets.RoomDefinitions)
+local BuildUtil = require(BuildAssets.BuildUtil)
 
 local remotesFolder = ReplicatedStorage:WaitForChild("Remotes")
 local remotes = {
-	
+
 	-- RFs
 	EnterBuildMode = remotesFolder.Build.EnterBuildMode,
 	AttemptPlaceRoom = remotesFolder.Build.AttemptPlaceRoom,
@@ -21,6 +31,12 @@ local remotes = {
 --------------------------------------------------
 -- TYPES -- 
 --------------------------------------------------
+
+type Profile = ProfileTemplate.ProfileTemplate
+type SerializedRoom = ProfileTemplate.SerializedRoom
+type PlotData = ProfileTemplate.PlotData
+
+type RoomDefinition = RoomDefinitions.RoomDefinition
 
 
 --------------------------------------------------
