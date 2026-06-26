@@ -8,22 +8,33 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local playerGui = player.PlayerGui
 
+-- UI
+local Displays = playerGui:WaitForChild("Displays")
+local buildDisplay = Displays.BuildDisplay
+--..
+local ScreenElements = playerGui:WaitForChild("ScreenElements")
+local hotbar = ScreenElements.Hotbar
+local buildHotbarButton = hotbar.BuildMode
+
+
+local Inputs = ReplicatedStorage.Inputs
+local BuildContext = Inputs.BuildContext
+
 local Modules = ReplicatedStorage.Modules
 local ProfileTemplate = require(Modules.ProfileTemplate)
 
 
+-- Build Assets
 local GameAssets = ReplicatedStorage.GameAssets
-
--- BuildAssets
 local BuildAssets = GameAssets.BuildAssets
 local RoomDefinitions = require(BuildAssets.RoomDefinitions)
 local BuildUtil = require(BuildAssets.BuildUtil)
 
 local remotesFolder = ReplicatedStorage:WaitForChild("Remotes")
 local remotes = {
+	EnterBuildMode = remotesFolder.Build.EnterBuildMode,
 
 	-- RFs
-	EnterBuildMode = remotesFolder.Build.EnterBuildMode,
 	AttemptPlaceRoom = remotesFolder.Build.AttemptPlaceRoom,
 	AttemptDeleteRoom = remotesFolder.Build.AttemptDeleteRoom,
 }
@@ -56,8 +67,22 @@ BuildController.Signals = {}
 -- PRIVATE FUNCTIONS --
 --------------------------------------------------
 
-local function PrivateFoo()
+
+local function updateBuildState(state: boolean)
+	buildDisplay.Visible = state
 	
+	-- Update hotbar button
+	buildHotbarButton.TitleLabel.Text = state and "Exit" or "Build"
+	buildHotbarButton.IconLabel.Image = "rbxassetid://" .. (state and "115651323947063" or "132401873380607")
+	buildHotbarButton.BlueGradient.Enabled = not state
+	buildHotbarButton.RedGradient.Enabled = state
+	
+end
+
+local function _connectInputs()
+	BuildContext.EnterBuildMode.Pressed:Connect(function()
+		remotes.EnterBuildMode:FireServer()
+	end)
 end
 
 --------------------------------------------------
@@ -74,11 +99,13 @@ end
 
 function BuildController:Init(controllers)
 	self.Controllers = controllers
-
+	
+	_connectInputs()
 end
 
 function BuildController:Start()
-
+	
+	remotes.EnterBuildMode.OnClientEvent:Connect(updateBuildState)
 end
 
 
