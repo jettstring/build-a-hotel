@@ -3,78 +3,65 @@
   "className": "DataModel",
   "children": [
     {
+      "name": "StarterPlayer",
+      "className": "StarterPlayer",
+      "pluginManaged": true,
+      "children": [
+        {
+          "name": "StarterPlayerScripts",
+          "className": "StarterPlayerScripts",
+          "pluginManaged": true,
+          "children": [
+            {
+              "name": "ClientMain",
+              "className": "LocalScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/init.local.luau"
+              ],
+              "children": [
+                {
+                  "name": "Controllers",
+                  "className": "Folder",
+                  "pluginManaged": true,
+                  "children": [
+                    {
+                      "name": "PlotController",
+                      "className": "ModuleScript",
+                      "pluginManaged": true,
+                      "filePaths": [
+                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/Controllers/PlotController.luau"
+                      ]
+                    },
+                    {
+                      "name": "BuildController",
+                      "className": "ModuleScript",
+                      "pluginManaged": true,
+                      "filePaths": [
+                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/Controllers/BuildController.luau"
+                      ]
+                    },
+                    {
+                      "name": "NotificationController",
+                      "className": "ModuleScript",
+                      "pluginManaged": true,
+                      "filePaths": [
+                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/Controllers/NotificationController.luau"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "ReplicatedStorage",
       "className": "ReplicatedStorage",
       "pluginManaged": true,
       "children": [
-        {
-          "name": "Modules",
-          "className": "Folder",
-          "pluginManaged": true,
-          "children": [
-            {
-              "name": "PurchaseProfileTemplate",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/PurchaseProfileTemplate.luau"
-              ]
-            },
-            {
-              "name": "ProfileTemplate",
-              "className": "ModuleScript",
-              "pluginManaged": true,
-              "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/ProfileTemplate.luau"
-              ]
-            }
-          ]
-        },
-        {
-          "name": "GameAssets",
-          "className": "Folder",
-          "pluginManaged": true,
-          "children": [
-            {
-              "name": "NPCs",
-              "className": "Folder",
-              "pluginManaged": true,
-              "children": [
-                {
-                  "name": "Pathfinder",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/Pathfinder.luau"
-                  ]
-                },
-                {
-                  "name": "NavGrid",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/NavGrid.luau"
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "PlotAssets",
-              "className": "Folder",
-              "pluginManaged": true,
-              "children": [
-                {
-                  "name": "Plot",
-                  "className": "ModuleScript",
-                  "pluginManaged": true,
-                  "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/PlotAssets/Plot.luau"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
         {
           "name": "Packages",
           "className": "Folder",
@@ -1859,40 +1846,92 @@
               ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "StarterPlayer",
-      "className": "StarterPlayer",
-      "pluginManaged": true,
-      "children": [
+        },
         {
-          "name": "StarterPlayerScripts",
-          "className": "StarterPlayerScripts",
+          "name": "Modules",
+          "className": "Folder",
           "pluginManaged": true,
           "children": [
             {
-              "name": "ClientMain",
-              "className": "LocalScript",
+              "name": "ProfileTemplate",
+              "className": "ModuleScript",
               "pluginManaged": true,
               "filePaths": [
-                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/init.local.luau"
-              ],
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/ProfileTemplate.luau"
+              ]
+            },
+            {
+              "name": "PurchaseProfileTemplate",
+              "className": "ModuleScript",
+              "pluginManaged": true,
+              "filePaths": [
+                "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/Modules/PurchaseProfileTemplate.luau"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GameAssets",
+          "className": "Folder",
+          "pluginManaged": true,
+          "children": [
+            {
+              "name": "PlotAssets",
+              "className": "Folder",
+              "pluginManaged": true,
               "children": [
                 {
-                  "name": "Controllers",
-                  "className": "Folder",
+                  "name": "Plot",
+                  "className": "ModuleScript",
                   "pluginManaged": true,
-                  "children": [
-                    {
-                      "name": "PlotController",
-                      "className": "ModuleScript",
-                      "pluginManaged": true,
-                      "filePaths": [
-                        "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/client/StarterPlayerScripts/ClientMain/Controllers/PlotController.luau"
-                      ]
-                    }
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/PlotAssets/Plot.luau"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "NPCs",
+              "className": "Folder",
+              "pluginManaged": true,
+              "children": [
+                {
+                  "name": "Pathfinder",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/Pathfinder.luau"
+                  ]
+                },
+                {
+                  "name": "NavGrid",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/NPCs/NavGrid.luau"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "BuildAssets",
+              "className": "Folder",
+              "pluginManaged": true,
+              "children": [
+                {
+                  "name": "RoomDefinitions",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/BuildAssets/RoomDefinitions.luau"
+                  ]
+                },
+                {
+                  "name": "Placer",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/shared/GameAssets/BuildAssets/Placer.luau"
                   ]
                 }
               ]
@@ -1928,6 +1967,14 @@
                   ]
                 },
                 {
+                  "name": "NotificationService",
+                  "className": "ModuleScript",
+                  "pluginManaged": true,
+                  "filePaths": [
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/NotificationService.luau"
+                  ]
+                },
+                {
                   "name": "PlotService",
                   "className": "ModuleScript",
                   "pluginManaged": true,
@@ -1936,11 +1983,11 @@
                   ]
                 },
                 {
-                  "name": "NavigationService",
+                  "name": "BuildService",
                   "className": "ModuleScript",
                   "pluginManaged": true,
                   "filePaths": [
-                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/NavigationService.luau"
+                    "c:/Users/jstri/Documents/Development/Projects/BuildAHotel/code/server/ServerScriptService/ServerMain/Services/BuildService.luau"
                   ]
                 }
               ]

@@ -1,12 +1,22 @@
-local ReplicatedStorage = game:GetNavigationService("ReplicatedStorage")
-local Players = game:GetNavigationService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
 
 --------------------------------------------------
 -- DEPENDENCIES -- 
 --------------------------------------------------
 
+local player = Players.LocalPlayer
+local playerGui = player.PlayerGui
+
+
 local remotesFolder = ReplicatedStorage:WaitForChild("Remotes")
-local remotes = {}
+local remotes = {
+	
+	-- RFs
+	EnterBuildMode = remotesFolder.Build.EnterBuildMode,
+	AttemptPlaceRoom = remotesFolder.Build.AttemptPlaceRoom,
+	AttemptDeleteRoom = remotesFolder.Build.AttemptDeleteRoom,
+}
 
 --------------------------------------------------
 -- TYPES -- 
@@ -16,9 +26,9 @@ local remotes = {}
 --------------------------------------------------
 -- STATE --
 --------------------------------------------------
-local NavigationService = {}
-NavigationService.Services = {}
-NavigationService.Signals = {}
+local BuildController = {}
+BuildController.Controllers = {}
+BuildController.Signals = {}
 
 --------------------------------------------------
 -- VARIABLES --
@@ -31,14 +41,14 @@ NavigationService.Signals = {}
 --------------------------------------------------
 
 local function PrivateFoo()
-
+	
 end
 
 --------------------------------------------------
 -- PUBLIC FUNCTIONS --
 --------------------------------------------------
 
-function NavigationService:PublicFoo()
+function BuildController:PublicFoo()
 
 end
 
@@ -46,14 +56,14 @@ end
 -- MAIN --
 --------------------------------------------------
 
-function NavigationService:Init(NavigationServices)
-	self.Services = NavigationServices
+function BuildController:Init(controllers)
+	self.Controllers = controllers
 
 end
 
-function NavigationService:Start()
+function BuildController:Start()
 
 end
 
 
-return NavigationService
+return BuildController

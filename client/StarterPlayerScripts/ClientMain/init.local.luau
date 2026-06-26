@@ -4,7 +4,8 @@ local CmdrClient = require(ReplicatedStorage:WaitForChild("CmdrClient"))
 CmdrClient:SetActivationKeys({ Enum.KeyCode.F2 , Enum.KeyCode.Semicolon})
 
 local loadOrder = {
-	{"PlotController", require(Controllers.PlotController) }
+	{"PlotController", require(Controllers.PlotController) },
+	{"BuildController", require(Controllers.BuildController) },
 }
 
 -- Build named lookup

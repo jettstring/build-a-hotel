@@ -54,6 +54,7 @@ local function _setupPlot()
 		return
 	end
 	
+	
 	-- fire plot assignment signal
 	PlotController.Signals.PlotAssigned:Fire()
 	
